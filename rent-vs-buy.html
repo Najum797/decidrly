@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rent vs Buy Calculator | Decidrly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px 0;
+}
+button {
+  padding: 10px;
+  width: 100%;
+  background-color: #2c7be5;
+  color: white;
+  border: none;
+}
+.result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Rent vs Buy Calculator</h2>
+
+<label>Monthly Rent (PKR)</label>
+<input id="rent" type="number">
+
+<label>House Price (PKR)</label>
+<input id="price" type="number">
+
+<label>Years</label>
+<input id="years" type="number">
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result" id="result"></div>
+
+<script>
+function calculate() {
+
+let rent = document.getElementById("rent").value;
+let price = document.getElementById("price").value;
+let years = document.getElementById("years").value;
+
+let totalRent = rent * 12 * years;
+
+if(totalRent > price)
+  result.innerHTML = "Buying is financially better by PKR " + (totalRent - price);
+else
+  result.innerHTML = "Renting is financially better by PKR " + (price - totalRent);
+
+}
+</script>
+
+</body>
+</html>
