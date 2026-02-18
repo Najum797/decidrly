@@ -1,0 +1,96 @@
+<!-- File: savings_vs_inflation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savings vs Inflation</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+label { display: block; margin-top: 10px; }
+input { width: 100%; padding: 5px; margin-top: 5px; }
+button { margin-top: 15px; padding: 10px 15px; }
+.result { margin-top: 20px; font-weight: bold; }
+canvas { margin-top: 20px; max-width: 100%; }
+</style>
+</head>
+<body>
+
+<h2>Savings vs Inflation Calculator</h2>
+
+<label>Current Savings (PKR):
+  <input type="number" id="savings" value="100000">
+</label>
+
+<label>Annual Inflation Rate (%):
+  <input type="number" id="inflation" value="10">
+</label>
+
+<label>Annual Investment Return Rate (%):
+  <input type="number" id="returnRate" value="12">
+</label>
+
+<label>Investment Duration (years):
+  <input type="number" id="years" value="10">
+</label>
+
+<label>Delay in Investing (years):
+  <input type="number" id="delay" value="2">
+</label>
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result" id="result"></div>
+
+<canvas id="chart" width="600" height="400"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function calculate() {
+    let savings = parseFloat(document.getElementById("savings").value);
+    let inflation = parseFloat(document.getElementById("inflation").value) / 100;
+    let returnRate = parseFloat(document.getElementById("returnRate").value) / 100;
+    let years = parseInt(document.getElementById("years").value);
+    let delay = parseInt(document.getElementById("delay").value);
+
+    // Arrays for graph
+    let yearLabels = [];
+    let noInvest = [];
+    let investNow = [];
+    let investDelayed = [];
+
+    for (let y = 0; y <= years; y++) {
+        yearLabels.push(y);
+        noInvest.push(savings / Math.pow(1 + inflation, y));
+        investNow.push(y < delay ? 0 : savings * Math.pow(1 + returnRate, y - delay) / Math.pow(1 + inflation, y));
+        investDelayed.push(y < delay ? 0 : savings * Math.pow(1 + returnRate, y - delay) / Math.pow(1 + inflation, y));
+    }
+
+    document.getElementById("result").innerHTML = `
+        <p>Future Value if Not Invested: PKR ${noInvest[years].toFixed(2)}</p>
+        <p>Future Value if Invested Immediately: PKR ${investNow[years].toFixed(2)}</p>
+        <p>Future Value if Invested After ${delay} Year(s): PKR ${investDelayed[years].toFixed(2)}</p>
+    `;
+
+    // Plot chart
+    new Chart(document.getElementById('chart'), {
+        type: 'line',
+        data: {
+            labels: yearLabels,
+            datasets: [
+                { label: 'Not Invested (Inflation Erosion)', data: noInvest, borderColor: 'red', fill: false },
+                { label: 'Invested Immediately', data: investNow, borderColor: 'green', fill: false },
+                { label: `Invested After ${delay} Year(s)`, data: investDelayed, borderColor: 'blue', fill: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'top' } },
+            scales: { y: { title: { display: true, text: 'PKR Value' } }, x: { title: { display: true, text: 'Years' } } }
+        }
+    });
+}
+</script>
+
+</body>
+</html>
