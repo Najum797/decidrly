@@ -37,7 +37,30 @@ header p {
 }
 
 /* ===============================
-   HOMEPAGE CONTAINER
+   NAV BAR
+================================= */
+
+.navbar {
+    background-color: #1e3a8a;
+    overflow: hidden;
+    padding: 12px 0;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar a:hover {
+    background-color: #2563eb;
+    border-radius: 5px;
+}
+
+/* ===============================
+   HOMEPAGE CONTAINER / CARDS
 ================================= */
 
 .container {
@@ -47,10 +70,6 @@ header p {
     padding: 50px 20px;
     flex-wrap: wrap;
 }
-
-/* ===============================
-   CARD DESIGN
-================================= */
 
 .card {
     background: white;
@@ -99,7 +118,7 @@ header p {
 }
 
 /* ===============================
-   CALCULATOR PAGE STYLING
+   CALCULATOR CONTAINER
 ================================= */
 
 .calculator-container {
