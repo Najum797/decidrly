@@ -3,68 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buy vs Rent Calculator</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 20px; }
-label { display: block; margin-top: 10px; }
-input { width: 100%; padding: 5px; margin-top: 5px; }
-button { margin-top: 15px; padding: 10px 15px; cursor: pointer; }
-.result { margin-top: 20px; font-weight: bold; }
-canvas { margin-top: 20px; max-width: 100%; }
-</style>
+<title>Buy vs Rent | Decidrly</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<h2>Buy vs Rent Calculator (with Delay)</h2>
+<header>
+    <h1>Decidrly</h1>
+</header>
 
-<label>Property Price (PKR):
-  <input type="number" id="price" value="5000000">
-</label>
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="buy_vs_rent.html">Buy vs Rent</a>
+    <a href="loan_vs_cash.html">Loan vs Cash</a>
+    <a href="savings_vs_inflation.html">Savings vs Inflation</a>
+</nav>
 
-<label>Annual Rent (PKR):
-  <input type="number" id="rent" value="300000">
-</label>
+<div class="calculator-container">
+    <h2>Buy vs Rent Calculator (with Delay)</h2>
 
-<label>Annual Property Appreciation Rate (%):
-  <input type="number" id="appreciation" value="8">
-</label>
+    <label>Property Price (PKR):<input type="number" id="price" value="5000000"></label>
+    <label>Annual Rent (PKR):<input type="number" id="rent" value="300000"></label>
+    <label>Annual Property Appreciation Rate (%):<input type="number" id="appreciation" value="8"></label>
+    <label>Annual Rent Increase Rate (%):<input type="number" id="rentIncrease" value="6"></label>
+    <label>Investment Duration (years):<input type="number" id="years" value="10"></label>
+    <label>Delay in Buying (years):<input type="number" id="delay" value="0"></label>
 
-<label>Annual Rent Increase Rate (%):
-  <input type="number" id="rentIncrease" value="6">
-</label>
+    <button onclick="calculateBuyVsRent()">Calculate</button>
+    <div class="result" id="result"></div>
+    <canvas id="chart" width="600" height="400"></canvas>
+</div>
 
-<label>Investment Duration (years):
-  <input type="number" id="years" value="10">
-</label>
-
-<label>Delay in Buying (years):
-  <input type="number" id="delay" value="0">
-</label>
-
-<button onclick="calculate()">Calculate</button>
-
-<div class="result" id="result"></div>
-<canvas id="chart" width="600" height="400"></canvas>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-function calculate() {
+function calculateBuyVsRent() {
     let price = parseFloat(document.getElementById("price").value);
     let rent = parseFloat(document.getElementById("rent").value);
-    let appreciation = parseFloat(document.getElementById("appreciation").value) / 100;
-    let rentIncrease = parseFloat(document.getElementById("rentIncrease").value) / 100;
+    let appreciation = parseFloat(document.getElementById("appreciation").value)/100;
+    let rentIncrease = parseFloat(document.getElementById("rentIncrease").value)/100;
     let years = parseInt(document.getElementById("years").value);
     let delay = parseInt(document.getElementById("delay").value);
 
     let yearLabels = [];
     let rentCosts = [];
     let buyCosts = [];
-
     let totalRent = 0;
-    let totalBuy = 0;
 
     for (let y = 0; y <= years; y++) {
         yearLabels.push(y);
+        if (y === 0) totalRent = rent;
+        else totalRent *= (1 + rentIncrease);
+        rentCosts.push(totalRent);
 
-        // Rent scenario (always pays rent)
-        if (y === 0) totalRent
+        if (y < delay) buyCosts.push(0);
+        else buyCosts.push(price * Math.pow(1 + appreciation, y - delay));
+    }
+
+    document.getElementById("result").innerHTML = `
+        <p>Total Rent Paid over ${years} years: PKR ${rentCosts.reduce((a,b)=>a+b,0).toFixed(2)}</p>
+        <p>Property Value if Bought After ${delay} Year(s): PKR ${buyCosts[years].toFixed(2)}</p>
+    `;
+
+    new Chart(document.getElementById('chart'), {
+        type: 'line',
+        data: {
+            labels: yearLabels,
+            datasets: [
+                { label: 'Rent Payments', data: rentCosts, borderColor: 'red', fill: false },
+                { label: `Buy Property (after ${delay} year(s))`, data: buyCosts, borderColor: 'green', fill: false }
+            ]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'top' } } }
+    });
+}
+</script>
+
+</body>
+</html>
