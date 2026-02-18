@@ -1,88 +1,164 @@
-body {
-    font-family: Arial, sans-serif;
+/* ===============================
+   GLOBAL SETTINGS
+================================= */
+
+* {
     margin: 0;
-    background: #f4f6f9;
-    color: #333;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* ===============================
+   HEADER
+================================= */
+
 header {
-    background: #0b3d91;
+    background-color: #1e3a8a;
     color: white;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 25px 20px;
+    text-align: center;
 }
 
 header h1 {
-    margin: 0;
+    font-size: 32px;
+    margin-bottom: 8px;
 }
 
 header p {
-    margin: 0;
-    font-size: 14px;
+    font-size: 16px;
+    opacity: 0.9;
 }
 
-nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: bold;
-}
+/* ===============================
+   HOMEPAGE CONTAINER
+================================= */
 
-.hero {
-    text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(to right, #e8f0ff, #ffffff);
-}
-
-.hero h2 {
-    font-size: 36px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin: 20px 0;
-}
-
-.btn-primary {
-    background: #0b3d91;
-    color: white;
-    padding: 12px 24px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.tools {
+.container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    padding: 60px 20px;
+    gap: 40px;
+    padding: 50px 20px;
     flex-wrap: wrap;
 }
 
+/* ===============================
+   CARD DESIGN
+================================= */
+
 .card {
     background: white;
-    padding: 30px;
-    width: 300px;
+    width: 320px;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.btn-secondary {
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #111827;
+}
+
+.card p {
+    font-size: 15px;
+    color: #4b5563;
+    margin-bottom: 20px;
+}
+
+/* ===============================
+   BUTTON STYLE
+================================= */
+
+.btn {
     display: inline-block;
-    margin-top: 20px;
-    background: #0b3d91;
+    padding: 12px 20px;
+    background-color: #2563eb;
     color: white;
-    padding: 10px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
 }
 
-footer {
+.btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* ===============================
+   CALCULATOR PAGE STYLING
+================================= */
+
+.calculator-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.calculator-container h2 {
+    margin-bottom: 20px;
     text-align: center;
-    padding: 20px;
-    background: #0b3d91;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #2563eb;
     color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* ===============================
+   CHART
+================================= */
+
+canvas {
+    margin-top: 30px;
+    max-width: 100%;
 }
