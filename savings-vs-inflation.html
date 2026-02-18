@@ -1,93 +1,84 @@
-<!-- File: savings_vs_inflation.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Savings vs Inflation</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 20px; }
-label { display: block; margin-top: 10px; }
-input { width: 100%; padding: 5px; margin-top: 5px; }
-button { margin-top: 15px; padding: 10px 15px; }
-.result { margin-top: 20px; font-weight: bold; }
-canvas { margin-top: 20px; max-width: 100%; }
-</style>
+<title>Savings vs Inflation | Decidrly</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<h2>Savings vs Inflation Calculator</h2>
+<header>
+    <h1>Decidrly</h1>
+</header>
 
-<label>Current Savings (PKR):
-  <input type="number" id="savings" value="100000">
-</label>
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="buy_vs_rent.html">Buy vs Rent</a>
+    <a href="loan_vs_cash.html">Loan vs Cash</a>
+    <a href="savings_vs_inflation.html">Savings vs Inflation</a>
+</nav>
 
-<label>Annual Inflation Rate (%):
-  <input type="number" id="inflation" value="10">
-</label>
+<div class="calculator-container">
+    <h2>Savings vs Inflation Calculator (with Delay)</h2>
 
-<label>Annual Investment Return Rate (%):
-  <input type="number" id="returnRate" value="12">
-</label>
+    <label>Initial Savings (PKR):<input type="number" id="savings" value="1000000"></label>
+    <label>Annual Contribution (PKR):<input type="number" id="contribution" value="100000"></label>
+    <label>Annual Inflation Rate (%):<input type="number" id="inflation" value="8"></label>
+    <label>Expected Investment Return (%):<input type="number" id="returnRate" value="12"></label>
+    <label>Investment Duration (years):<input type="number" id="years" value="10"></label>
+    <label>Delay in Investing (years):<input type="number" id="delay" value="0"></label>
 
-<label>Investment Duration (years):
-  <input type="number" id="years" value="10">
-</label>
+    <button onclick="calculateSavingsVsInflation()">Calculate</button>
+    <div class="result" id="result"></div>
+    <canvas id="chart" width="600" height="400"></canvas>
+</div>
 
-<label>Delay in Investing (years):
-  <input type="number" id="delay" value="2">
-</label>
-
-<button onclick="calculate()">Calculate</button>
-
-<div class="result" id="result"></div>
-
-<canvas id="chart" width="600" height="400"></canvas>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-function calculate() {
+function calculateSavingsVsInflation() {
     let savings = parseFloat(document.getElementById("savings").value);
-    let inflation = parseFloat(document.getElementById("inflation").value) / 100;
-    let returnRate = parseFloat(document.getElementById("returnRate").value) / 100;
+    let contribution = parseFloat(document.getElementById("contribution").value);
+    let inflation = parseFloat(document.getElementById("inflation").value)/100;
+    let returnRate = parseFloat(document.getElementById("returnRate").value)/100;
     let years = parseInt(document.getElementById("years").value);
     let delay = parseInt(document.getElementById("delay").value);
 
-    // Arrays for graph
     let yearLabels = [];
-    let noInvest = [];
-    let investNow = [];
-    let investDelayed = [];
+    let realValue = [];
+    let nominalValue = [];
 
-    for (let y = 0; y <= years; y++) {
+    let total = savings;
+
+    for (let y=0; y<=years; y++) {
         yearLabels.push(y);
-        noInvest.push(savings / Math.pow(1 + inflation, y));
-        investNow.push(y < delay ? 0 : savings * Math.pow(1 + returnRate, y - delay) / Math.pow(1 + inflation, y));
-        investDelayed.push(y < delay ? 0 : savings * Math.pow(1 + returnRate, y - delay) / Math.pow(1 + inflation, y));
+
+        if (y < delay) {
+            nominalValue.push(0);
+            realValue.push(0);
+        } else {
+            if (y !== delay) total = total*(1+returnRate) + contribution;
+            nominalValue.push(total);
+            let real = total / Math.pow(1+inflation, y-delay);
+            realValue.push(real);
+        }
     }
 
     document.getElementById("result").innerHTML = `
-        <p>Future Value if Not Invested: PKR ${noInvest[years].toFixed(2)}</p>
-        <p>Future Value if Invested Immediately: PKR ${investNow[years].toFixed(2)}</p>
-        <p>Future Value if Invested After ${delay} Year(s): PKR ${investDelayed[years].toFixed(2)}</p>
+        <p>Total Savings after ${years} years (Nominal): PKR ${nominalValue[years].toFixed(2)}</p>
+        <p>Total Savings after ${years} years (Real Value): PKR ${realValue[years].toFixed(2)}</p>
     `;
 
-    // Plot chart
     new Chart(document.getElementById('chart'), {
         type: 'line',
         data: {
             labels: yearLabels,
             datasets: [
-                { label: 'Not Invested (Inflation Erosion)', data: noInvest, borderColor: 'red', fill: false },
-                { label: 'Invested Immediately', data: investNow, borderColor: 'green', fill: false },
-                { label: `Invested After ${delay} Year(s)`, data: investDelayed, borderColor: 'blue', fill: false }
+                { label: 'Nominal Savings', data: nominalValue, borderColor: 'green', fill: false },
+                { label: 'Real Value', data: realValue, borderColor: 'red', fill: false }
             ]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { position: 'top' } },
-            scales: { y: { title: { display: true, text: 'PKR Value' } }, x: { title: { display: true, text: 'Years' } } }
-        }
+        options: { responsive: true, plugins: { legend: { position: 'top' } } }
     });
 }
 </script>
