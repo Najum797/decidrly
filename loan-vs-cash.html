@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Loan vs Cash – Decidrly</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Decidrly</h1>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="buy-vs-rent.html">Buy vs Rent</a>
+        <a href="loan-vs-cash.html">Loan vs Cash</a>
+        <a href="savings-vs-inflation.html">Savings vs Inflation</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Loan vs Cash Decision</h2>
+    <p>Compare financing vs using savings — including delay impact.</p>
+</section>
+
+<section class="tools">
+
+<div class="card">
+
+<input type="number" id="price" placeholder="Purchase Price"><br><br>
+<input type="number" id="loanRate" placeholder="Loan Interest Rate (%)"><br><br>
+<input type="number" id="years" placeholder="Loan Duration (Years)"><br><br>
+<input type="number" id="investmentReturn" placeholder="Investment Return (%)"><br><br>
+
+<hr>
+
+<h4>Delay Scenario</h4>
+
+<input type="number" id="delayYears" placeholder="Delay Purchase (Years)" value="0"><br><br>
+<input type="number" id="priceGrowth" placeholder="Price Growth per Year (%)"><br><br>
+
+<button onclick="calculate()">Compare</button>
+
+<p id="result"></p>
+
+</div>
+</section>
+
+<footer>
+    <p>© 2026 Decidrly</p>
+</footer>
+
+<script>
+function calculate() {
+
+    let price = parseFloat(document.getElementById("price").value);
+    let loanRate = parseFloat(document.getElementById("loanRate").value) / 100;
+    let years = parseFloat(document.getElementById("years").value);
+    let invest = parseFloat(document.getElementById("investmentReturn").value) / 100;
+    let delay = parseFloat(document.getElementById("delayYears").value);
+    let growth = parseFloat(document.getElementById("priceGrowth").value) / 100;
+
+    // Adjust price if delayed
+    let futurePrice = price * Math.pow((1 + growth), delay);
+
+    // Loan total cost
+    let loanCost = futurePrice * Math.pow((1 + loanRate), years);
+
+    // Cash scenario: invest during loan period
+    let investGrowth = futurePrice * Math.pow((1 + invest), years);
+
+    document.getElementById("result").innerHTML =
+        "Future Price after Delay: " + futurePrice.toFixed(2) +
+        "<br><br>Total Loan Cost: " + loanCost.toFixed(2) +
+        "<br><br>Investment Growth if Paid Cash: " + investGrowth.toFixed(2);
+}
+</script>
+
+</body>
+</html>
