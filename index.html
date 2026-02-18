@@ -1,54 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Decidrly - Make Better Decisions</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f8;
-        }
-        header {
-            background-color: #1f2937;
-            color: white;
-            padding: 20px;
-        }
-        h1 {
-            margin: 0;
-        }
-        .container {
-            padding: 40px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-top: 20px;
-        }
-        .btn:hover {
-            background-color: #1d4ed8;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decidrly – Smart Financial Decision Tools</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
-    <h1>Decidrly</h1>
-    <p>Simple online tools to help you make smarter decisions.</p>
+    <div class="logo">
+        <h1>Decidrly</h1>
+        <p>Smart Financial Decision Tools</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="buy-vs-rent.html">Buy vs Rent</a>
+        <a href="loan-vs-cash.html">Loan vs Cash</a>
+        <a href="savings-vs-inflation.html">Savings vs Inflation</a>
+        <a href="#">About</a>
+    </nav>
 </header>
 
-<div class="container">
-    <h2>Welcome</h2>
-    <p>We build practical decision calculators for everyday life.</p>
-    <a class="btn" href="#">Coming Soon</a>
-</div>
+<section class="hero">
+    <h2>Make Better Financial Decisions.</h2>
+    <p>Compare options. See long-term impact. Decide with clarity.</p>
+    <a href="#tools" class="btn-primary">Explore Calculators</a>
+</section>
 
-</body>                    
+<section id="tools" class="tools">
+
+    <div class="card">
+        <h3>Buy vs Rent</h3>
+        <p>Compare the long-term cost of buying versus renting.</p>
+        <a href="buy-vs-rent.html" class="btn-secondary">Start Analysis</a>
+    </div>
+
+    <div class="card">
+        <h3>Loan vs Cash</h3>
+        <p>Evaluate whether financing or using savings makes more sense.</p>
+        <a href="loan-vs-cash.html" class="btn-secondary">Start Analysis</a>
+    </div>
+
+    <div class="card">
+        <h3>Savings vs Inflation</h3>
+        <p>See how inflation affects your purchasing power over time.</p>
+        <a href="savings-vs-inflation.html" class="btn-secondary">Start Analysis</a>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Decidrly. All rights reserved.</p>
+</footer>
+
+</body>
 </html>
