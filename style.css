@@ -181,3 +181,61 @@ canvas {
     margin-top: 30px;
     max-width: 100%;
 }
+
+/* ===============================
+   INPUT ENHANCEMENT (Professional)
+================================= */
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+
+input:focus, select:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+}
+
+/* ===============================
+   CALCULATOR BUTTON UPGRADE
+================================= */
+
+button {
+    margin-top: 20px;
+    padding: 14px 20px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* ===============================
+   RESULT BOX UPGRADE
+================================= */
+
+.result {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #eff6ff;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+}
