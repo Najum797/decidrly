@@ -3,114 +3,470 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Decidrly | Smart Financial Decision Tools</title>
-
+<title>CalcSuite — Financial Clarity Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-:root{
-    --primary:#111827;
-    --accent:#2563eb;
-    --light:#f9fafb;
-    --muted:#6b7280;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-}
+  :root {
+    --ink: #0f0e0c;
+    --ink-muted: #6b6860;
+    --ink-faint: #b8b5ae;
+    --page: #f5f3ef;
+    --card: #ffffff;
+    --rule: #e2dfd9;
+    --accent-gold: #c8972a;
+    --accent-teal: #1a7a6e;
+    --accent-rose: #b84a5e;
+    --accent-indigo: #3d4f9f;
+    --radius: 4px;
+    --radius-lg: 12px;
+  }
 
-body{
-    background:var(--light);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    text-align:center;
-    padding:20px;
-}
+  html { scroll-behavior: smooth; }
 
-.container{
-    max-width:650px;
-}
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-.logo{
-    font-size:42px;
-    font-weight:700;
-    color:var(--primary);
-    margin-bottom:10px;
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(245,243,239,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active { color: var(--ink); font-weight: 500; }
 
-.tagline{
-    font-size:18px;
-    color:var(--muted);
-    margin-bottom:40px;
-}
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding-top: 60px;
+  }
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent-gold);
+    opacity: 0.6;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.75rem;
+    max-width: 14ch;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent-gold);
+  }
+  .hero-sub {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    max-width: 46ch;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2rem;
+    background: var(--ink);
+    color: var(--page);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: #2a2820; transform: translateY(-1px); }
+  .hero-cta svg { width: 16px; height: 16px; }
 
-.headline{
-    font-size:28px;
-    font-weight:600;
-    margin-bottom:20px;
-    color:var(--primary);
-}
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    padding: 0.6rem 0;
+    background: var(--card);
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    gap: 3rem;
+    animation: scroll-left 18s linear infinite;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+  .marquee-track span { padding: 0 1rem; }
+  .marquee-dot { color: var(--accent-gold); }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 
-.description{
-    font-size:16px;
-    line-height:1.6;
-    color:var(--muted);
-    margin-bottom:40px;
-}
+  /* ── CARDS SECTION ── */
+  .section {
+    padding: 6rem 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+  .section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 3.5rem;
+    max-width: 18ch;
+  }
 
-.button{
-    display:inline-block;
-    padding:14px 28px;
-    background:var(--accent);
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:500;
-    transition:0.3s ease;
-}
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5px;
+    background: var(--rule);
+    border: 1.5px solid var(--rule);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
 
-.button:hover{
-    background:#1d4ed8;
-}
+  .calc-card {
+    background: var(--card);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .calc-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .calc-card:hover { background: #fafaf8; }
+  .calc-card:hover::after { transform: scaleX(1); }
 
-.footer{
-    position:absolute;
-    bottom:20px;
-    font-size:14px;
-    color:var(--muted);
-}
+  .card--gold::after { background: var(--accent-gold); }
+  .card--teal::after { background: var(--accent-teal); }
+  .card--rose::after { background: var(--accent-rose); }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .card--gold .card-icon { background: #fdf5e6; }
+  .card--teal .card-icon { background: #e6f4f2; }
+  .card--rose .card-icon { background: #faeaed; }
+
+  .card-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.875rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.875rem;
+    line-height: 1.15;
+  }
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 2rem;
+  }
+  .card-tags {
+    display: flex; flex-wrap: wrap; gap: 0.375rem;
+    margin-bottom: 1.75rem;
+  }
+  .card-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.625rem;
+    border-radius: 100px;
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .card--gold .card-link { color: var(--accent-gold); }
+  .card--teal .card-link { color: var(--accent-teal); }
+  .card--rose .card-link { color: var(--accent-rose); }
+  .calc-card:hover .card-link { gap: 0.875rem; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--ink);
+    color: var(--page);
+    padding: 5rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 0;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: #f5f3ef;
+  }
+  .stat-num span { color: var(--accent-gold); }
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #888680;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #888680;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    border-top: 1px solid #2a2820;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fade-up 0.6s ease both; }
+  .hero-title   { animation: fade-up 0.6s 0.1s ease both; }
+  .hero-sub     { animation: fade-up 0.6s 0.2s ease both; }
+  .hero-cta     { animation: fade-up 0.6s 0.3s ease both; }
+  .calc-card    { animation: fade-up 0.5s ease both; }
+  .calc-card:nth-child(1) { animation-delay: 0.0s; }
+  .calc-card:nth-child(2) { animation-delay: 0.1s; }
+  .calc-card:nth-child(3) { animation-delay: 0.2s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .stats-strip { grid-template-columns: 1fr; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    .section { padding: 4rem 1.25rem; }
+  }
+  @media (max-width: 540px) {
+    .nav-links a:not(.nav-home) { display: none; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<nav>
+  <a class="nav-logo nav-home" href="index.html">CalcSuite</a>
+  <div class="nav-links">
+    <a href="./ver2-BVR/buy-vs-rent.html">Buy vs Rent</a>
+    <a href="./ver1-SalEros/salary-erosion.html">Salary Erosion</a>
+    <a href="./ver1-Freelance/freelancer-income.html">Freelance</a>
+  </div>
+</nav>
 
-    <div class="logo">Decidrly</div>
-    <div class="tagline">Decision Science Made Practical</div>
-
-    <div class="headline">
-        Smart Financial Decision Tools Are Coming Soon
+<main>
+  <section class="hero">
+    <div class="hero-center">
+      <div class="hero-eyebrow">Financial Clarity Tools</div>
+      <h1 class="hero-title">Make money decisions with <em>confidence</em></h1>
+      <p class="hero-sub">Three precision calculators for the questions that matter — renting vs buying, protecting your salary from inflation, and pricing your freelance work.</p>
+      <a href="#tools" class="hero-cta">
+        Explore Tools
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
 
-    <div class="description">
-        Decidrly is building powerful, data-driven calculators to help individuals 
-        make smarter financial choices — including Buy vs Rent, Salary-Erosion, 
-        Freelancer Income, and more.
-        <br><br>
-        Built for clarity. Designed for serious decisions.
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span>Buy vs Rent</span><span class="marquee-dot">◆</span>
+        <span>Salary Erosion</span><span class="marquee-dot">◆</span>
+        <span>Freelance Income</span><span class="marquee-dot">◆</span>
+        <span>Real Estate</span><span class="marquee-dot">◆</span>
+        <span>Inflation Impact</span><span class="marquee-dot">◆</span>
+        <span>Tax Planning</span><span class="marquee-dot">◆</span>
+        <span>Buy vs Rent</span><span class="marquee-dot">◆</span>
+        <span>Salary Erosion</span><span class="marquee-dot">◆</span>
+        <span>Freelance Income</span><span class="marquee-dot">◆</span>
+        <span>Real Estate</span><span class="marquee-dot">◆</span>
+        <span>Inflation Impact</span><span class="marquee-dot">◆</span>
+        <span>Tax Planning</span><span class="marquee-dot">◆</span>
+      </div>
     </div>
+  </section>
 
-    <a href="#" class="button">Launching Soon</a>
+  <section class="section" id="tools">
+    <div class="section-label">The Toolkit</div>
+    <h2 class="section-heading">Three tools, sharper decisions</h2>
 
-</div>
+    <div class="cards-grid">
 
-<div class="footer">
-    © 2026 Decidrly. All rights reserved.
-</div>
+      <!-- CARD 1: Buy vs Rent -->
+      <a class="calc-card card--gold" href="./ver2-BVR/buy-vs-rent.html">
+        <div class="card-icon">🏠</div>
+        <div class="card-number">01</div>
+        <h3 class="card-title">Buy vs Rent</h3>
+        <p class="card-desc">Is buying always better than renting? Model property prices, mortgage rates, and opportunity cost to find your real break-even point.</p>
+        <div class="card-tags">
+          <span class="card-tag">Real Estate</span>
+          <span class="card-tag">Mortgage</span>
+          <span class="card-tag">Break-even</span>
+        </div>
+        <span class="card-link">Open calculator →</span>
+      </a>
+
+      <!-- CARD 2: Salary Erosion -->
+      <a class="calc-card card--teal" href="salary-erosion.html">
+        <div class="card-icon">📉</div>
+        <div class="card-number">02</div>
+        <h3 class="card-title">Salary Erosion</h3>
+        <p class="card-desc">Inflation silently cuts your purchasing power every year. See exactly how much your salary has eroded in real terms — across currencies.</p>
+        <div class="card-tags">
+          <span class="card-tag">Inflation</span>
+          <span class="card-tag">PKR / USD</span>
+          <span class="card-tag">Purchasing Power</span>
+        </div>
+        <span class="card-link">Open calculator →</span>
+      </a>
+
+      <!-- CARD 3: Freelance Net Income -->
+      <a class="calc-card card--rose" href="./ver1-Freelance/freelancer-income.html">
+        <div class="card-icon">💼</div>
+        <div class="card-number">03</div>
+        <h3 class="card-title">Freelance Income</h3>
+        <p class="card-desc">Price your work the right way. Account for taxes, platform fees, unpaid hours, and expenses to reveal your actual net income per hour.</p>
+        <div class="card-tags">
+          <span class="card-tag">FBR Tax</span>
+          <span class="card-tag">Hourly Rate</span>
+          <span class="card-tag">Net Income</span>
+        </div>
+        <span class="card-link">Open calculator →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <div style="background: var(--ink); margin: 0;">
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-num">3<span>×</span></div>
+        <div class="stat-label">Faster than spreadsheets</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>100</span>%</div>
+        <div class="stat-label">Browser-based, no signup</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>∞</span></div>
+        <div class="stat-label">Scenarios to model</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  CalcSuite · Financial Clarity Tools · All calculations run locally in your browser
+</footer>
 
 </body>
 </html>
