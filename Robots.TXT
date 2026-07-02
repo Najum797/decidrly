@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# AI crawlers - explicitly allowed so answer engines can cite CalcSuite
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://decidrly.com/sitemap.xml
