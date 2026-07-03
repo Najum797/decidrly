@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelancer Income Tax Calculator Pakistan (FBR 2026) | CalcSuite</title>
+
+<meta name="description" content="Free freelancer income tax calculator for Pakistan. See your real take-home after FBR tax, platform fees (Upwork/Fiverr), and unpaid admin hours — built for 2025-26 tax rules.">
+<meta name="keywords" content="freelancer income tax calculator Pakistan, FBR tax freelancer, freelance tax Pakistan 2026, Upwork Fiverr tax Pakistan, IT export tax Pakistan">
+<link rel="canonical" href="https://decidrly.com/freelancer-tax-calculator-pakistan.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://decidrly.com/freelancer-tax-calculator-pakistan.html">
+<meta property="og:title" content="Freelancer Income Tax Calculator Pakistan (FBR 2026)">
+<meta property="og:description" content="See your real take-home after FBR tax, platform fees, and unpaid admin hours — built for Pakistan's 2025-26 tax rules.">
+<meta property="og:image" content="https://decidrly.com/og-image.png">
+<meta property="og:site_name" content="CalcSuite">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Freelancer Income Tax Calculator Pakistan (FBR 2026)">
+<meta name="twitter:description" content="See your real take-home after FBR tax, platform fees, and unpaid admin hours.">
+<meta name="twitter:image" content="https://decidrly.com/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do freelancers have to pay income tax in Pakistan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Freelancers are generally treated as business individuals by FBR, not as salaried employees, and are taxed under a separate progressive slab structure once annual income exceeds the exemption threshold of PKR 600,000. Registering as a filer and appearing on FBR's Active Taxpayer List also affects withholding tax rates on many transactions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a lower tax rate for IT freelancers exporting services from Pakistan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Freelancers earning foreign-currency income from IT and IT-enabled services can qualify for a preferential regime: 0.25% for those registered with the Pakistan Software Export Board (PSEB), or 1% for those not registered, applied to export receipts rather than the standard business-individual slab table. This is a significantly lower effective rate than standard slabs for eligible exporters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the income tax exemption limit for freelancers in Pakistan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The exemption threshold for tax year 2025-26 is PKR 600,000 in annual income. Below this, no income tax applies. Above it, freelancers not qualifying for the IT export regime are taxed under the business-individual slab table, which runs higher than the salaried-employee table at the same income level."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do platform fees from Upwork or Fiverr affect what a freelancer actually takes home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Platform fees (commonly 5-20% depending on the platform and contract type) are deducted before the money reaches your bank account, separate from FBR tax owed on the income. A realistic net-income figure needs to account for both — platform fees first, then applicable tax on the remainder — which is what a proper calculator does rather than a flat percentage estimate."
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0c;
+    --ink-muted: #6b6860;
+    --ink-faint: #b8b5ae;
+    --page: #f5f3ef;
+    --card: #ffffff;
+    --rule: #e2dfd9;
+    --accent-gold: #c8972a;
+    --accent-teal: #1a7a6e;
+    --accent-rose: #b84a5e;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 60px;
+    background: rgba(245,243,239,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem; letter-spacing: -0.02em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { font-size: 0.875rem; color: var(--ink-muted); text-decoration: none; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--page) !important;
+    padding: 0.5rem 1.125rem; border-radius: 100px; font-weight: 500;
+  }
+
+  main { max-width: 760px; margin: 0 auto; padding: 7.5rem 1.5rem 5rem; }
+
+  .breadcrumb { font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--ink-faint); }
+
+  .eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent-rose); margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.25rem);
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .lede { font-size: 1.15rem; color: var(--ink-muted); font-weight: 300; margin-bottom: 2.5rem; }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; margin: 2.75rem 0 1rem;
+    letter-spacing: -0.01em;
+  }
+  p { margin-bottom: 1.1rem; color: #2a2820; }
+  ul, ol { margin: 0 0 1.1rem 1.4rem; color: #2a2820; }
+  li { margin-bottom: 0.4rem; }
+
+  .cta-box {
+    background: var(--ink); color: var(--page);
+    border-radius: 12px; padding: 2.25rem;
+    text-align: center; margin: 2.5rem 0;
+  }
+  .cta-box h3 {
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem;
+  }
+  .cta-box p { color: #b8b5ae; margin-bottom: 1.5rem; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--accent-rose); color: var(--page);
+    padding: 0.875rem 2rem; border-radius: 100px;
+    font-weight: 500; text-decoration: none; font-size: 0.95rem;
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem;
+    background: var(--card); border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--rule); font-size: 0.9rem;
+  }
+  th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--rule); }
+  th { background: #fafaf8; font-weight: 500; color: var(--ink-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  tr:last-child td { border-bottom: none; }
+
+  .note {
+    background: #fdf5e6; border-left: 3px solid var(--accent-gold);
+    padding: 1rem 1.25rem; border-radius: 6px; font-size: 0.9rem;
+    color: #4a3f28; margin: 1.5rem 0;
+  }
+
+  .faq-item { border-top: 1px solid var(--rule); padding: 1.25rem 0; }
+  .faq-item:last-child { border-bottom: 1px solid var(--rule); }
+  .faq-q { font-weight: 500; margin-bottom: 0.5rem; }
+  .faq-a { color: var(--ink-muted); font-size: 0.95rem; }
+
+  footer {
+    background: var(--ink); color: #888680; text-align: center;
+    padding: 2rem; font-size: 0.8rem;
+  }
+  footer a { color: #b8b5ae; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="./index.html">CalcSuite</a>
+  <div class="nav-links">
+    <a href="./ver2-BVR/buy-vs-rent.html">Buy vs Rent</a>
+    <a href="./ver1-SalEros/salary-erosion.html">Salary Erosion</a>
+    <a class="nav-cta" href="./ver1-Freelance/freelancer-income.html">Open Calculator</a>
+  </div>
+</nav>
+
+<main>
+  <div class="breadcrumb"><a href="./index.html">CalcSuite</a> / Freelancer Tax Calculator Pakistan</div>
+
+  <div class="eyebrow">Freelancing · FBR Tax · Pakistan</div>
+  <h1>Freelancer Income Tax Calculator Pakistan — What You Actually Take Home</h1>
+  <p class="lede">Between FBR income tax, platform fees on Upwork or Fiverr, and hours spent on admin you don't bill for, your real hourly rate is usually much lower than your invoice rate. This calculator works out your true net income — not a rough guess.</p>
+
+  <div class="cta-box">
+    <h3>Calculate your real net income</h3>
+    <p>Enter your monthly freelance earnings, platform, and filer status to see your actual take-home.</p>
+    <a class="cta-btn" href="./ver1-Freelance/freelancer-income.html">Open the Freelancer Income Calculator →</a>
+  </div>
+
+  <h2>How FBR taxes freelance income</h2>
+  <p>FBR generally treats freelancers as <strong>business individuals</strong>, not salaried employees — this matters because business individuals sit on a separate, and typically higher, tax slab table than salaried staff at the same income level. The exemption threshold for tax year 2025-26 is PKR 600,000 annually; below that, no income tax applies.</p>
+
+  <p>There's one major exception worth knowing: freelancers earning in foreign currency from <strong>IT and IT-enabled services</strong> (the majority of Upwork/Fiverr/Toptal-style work) can qualify for a preferential export-services regime — a flat 0.25% rate if registered with the Pakistan Software Export Board (PSEB), or 1% if not registered — applied to your export receipts instead of the standard slab table. For most freelance developers, designers, and writers earning in USD, this is dramatically lower than standard rates and worth confirming with a tax advisor if you haven't already.</p>
+
+  <div class="note">
+    <strong>Why this page doesn't publish a business-individual slab table:</strong> Unlike the salaried-employee slabs (which are well-documented and consistent across FBR guidance), the exact rates for non-export freelance/business income for 2025-26 vary across sources we checked — some appear to conflate individual and Association of Persons (AOP) rates. Rather than risk publishing an incorrect number on a tax matter, use the calculator below, which applies the correct logic, or confirm directly at <strong>fbr.gov.pk</strong>.
+  </div>
+
+  <h2>Salaried baseline, for reference (Tax Year 2025-26)</h2>
+  <p>Even though most freelancers fall under the business-individual table, the salaried table below is useful context since it's the well-corroborated starting point FBR built the progressive structure from:</p>
+
+  <table>
+    <tr><th>Annual Income (PKR)</th><th>Tax Rate</th></tr>
+    <tr><td>Up to 600,000</td><td>0%</td></tr>
+    <tr><td>600,000 – 1,200,000</td><td>1% of amount exceeding 600,000</td></tr>
+    <tr><td>1,200,000 – 2,200,000</td><td>PKR 6,000 + 11% of excess over 1,200,000</td></tr>
+    <tr><td>2,200,000 – 3,200,000</td><td>PKR 116,000 + 23% of excess over 2,200,000</td></tr>
+    <tr><td>3,200,000 – 4,100,000</td><td>PKR 346,000 + 30% of excess over 3,200,000</td></tr>
+    <tr><td>Above 4,100,000</td><td>PKR 616,000 + 35% of excess over 4,100,000</td></tr>
+  </table>
+  <p style="font-size:0.85rem; color:var(--ink-muted);">A further 9% surcharge applies to the tax amount (not the income) for individuals earning above PKR 10,000,000 annually.</p>
+
+  <h2>What eats into your freelance income beyond tax</h2>
+  <ul>
+    <li><strong>Platform fees.</strong> Upwork, Fiverr, and Guru typically take 5-20% depending on contract type and client history — deducted before the money ever reaches your bank account.</li>
+    <li><strong>Unpaid admin hours.</strong> Proposal writing, client calls, revisions, and invoicing all take real time that isn't billed. Your effective hourly rate is lower than your quoted rate once these are factored in.</li>
+    <li><strong>Currency conversion and Payoneer/bank fees.</strong> Converting USD/foreign currency earnings to PKR carries its own cost, on top of tax and platform fees.</li>
+  </ul>
+  <p>Stacking all of this — tax, platform fees, admin time, and conversion costs — is exactly what a proper net-income calculator should do, rather than a single flat "take 30% off" estimate that most freelancers use as a rule of thumb.</p>
+
+  <h2>Frequently asked questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Do freelancers have to pay income tax in Pakistan?</div>
+    <div class="faq-a">Yes. Freelancers are generally treated as business individuals by FBR, not salaried employees, and are taxed under a separate progressive slab table once annual income exceeds the PKR 600,000 exemption threshold. Filer status also affects withholding tax rates on many other transactions.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is there a lower tax rate for IT freelancers exporting services from Pakistan?</div>
+    <div class="faq-a">Yes — freelancers earning foreign-currency income from IT and IT-enabled services can qualify for a preferential regime: 0.25% if registered with the Pakistan Software Export Board (PSEB), or 1% if not registered, applied to export receipts rather than the standard slab table. This is a significantly lower effective rate for eligible exporters.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the income tax exemption limit for freelancers in Pakistan?</div>
+    <div class="faq-a">PKR 600,000 in annual income for tax year 2025-26. Below this, no income tax applies. Above it, freelancers not qualifying for the IT export regime fall under the business-individual slab table, which runs higher than the salaried table at equivalent income.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do platform fees from Upwork or Fiverr affect what a freelancer actually takes home?</div>
+    <div class="faq-a">Platform fees (commonly 5-20% depending on platform and contract type) are deducted before funds reach your bank account, separately from FBR tax owed on the income. A realistic net-income figure accounts for both — fees first, then tax on the remainder — rather than a flat percentage guess.</div>
+  </div>
+
+  <div class="cta-box">
+    <h3>See your actual number</h3>
+    <p>Free, no signup, runs entirely in your browser.</p>
+    <a class="cta-btn" href="./ver1-Freelance/freelancer-income.html">Open the Freelancer Income Calculator →</a>
+  </div>
+</main>
+
+<footer>
+  CalcSuite · Financial Clarity Tools · <a href="./index.html">Back to home</a>
+</footer>
+
+</body>
+</html>
